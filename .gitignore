@@ -30,3 +30,6 @@ settings/Testnet.toml
 # logs
 *.log
 npm-debug.log*
+
+# grant correspondence — never publish
+private/

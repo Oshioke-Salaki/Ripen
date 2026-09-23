@@ -228,9 +228,14 @@ An independent reviewer, given only the public URL, can create a time-locked gif
 
 | Metric | Target | How measured |
 |---|---|---|
-| Gifts created | 500+ | On-chain `gift-created` events |
-| New Stacks wallets created via claims | 300+ | Claim recipient addresses with no prior transaction history at claim time |
-| Recipients still holding sBTC 30 days after claiming | 30%+ | Balance snapshot at claim + 30 days |
+| Gifts created (organic) | 300 | On-chain `gift-created` events, excluding team- and sponsor-funded gifts |
+| New Stacks wallets created via claims | 50 | Claim recipient addresses with no prior transaction history at claim time |
+| Recipients still holding sBTC 30 days after claiming | 30% | Balance snapshot at claim + 30 days |
+| Gift volume (organic) | $1,000 equivalent | Sum of organic gift amounts |
+
+These replace an earlier, inconsistent pair of target sets (one claiming 500 gifts and 300 new wallets, another claiming 300 gifts and 50 new wallets). 500 gifts producing 300 new wallets implies a 60% new-wallet rate, which we have no evidence for. The numbers above are the single committed set.
+
+**Organic means user-funded.** Two categories of gift are excluded from every headline figure and reported separately: the pre-funded demo gift (R-6.4), and any sponsor-funded campaign. Every gift records its funding source at creation. No grant funds are used to create gifts.
 
 ### 10.3 Product health metrics (tracked from Milestone 1)
 

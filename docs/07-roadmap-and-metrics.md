@@ -98,7 +98,7 @@ No mainnet deployment until: external review complete, the full test matrix gree
 | M3-2 | Yield paid on claim | Claim returns principal plus the gift's share; reclaim likewise |
 | M3-3 | Live growth counter | Real accrued yield, shown to sender and recipient, never projected as though earned |
 | M3-4 | Chat-to-gift beta | Telegram or WhatsApp; the AI drafts, the user always approves, the AI never holds keys |
-| M3-5 | ≥1 sponsored campaign | A third party funds a batch of gifts |
+| M3-5 | ≥1 sponsored campaign | A third party funds a batch of gifts. **No sponsor is secured today** — this is a target, not a commitment, and will not be reported as secured until one exists |
 
 ### Design constraints, set now
 
@@ -138,9 +138,14 @@ Everything financial is derived from chain events, so our numbers are reproducib
 
 | Target | Number |
 |---|---|
-| Gifts created | 500+ |
-| New Stacks wallets via claims | 300+ |
-| Recipients holding sBTC 30 days after claiming | 30%+ |
+| Gifts created (organic) | 300 |
+| New Stacks wallets via claims | 50 |
+| Recipients holding sBTC 30 days after claiming | 30% |
+| Gift volume (organic) | $1,000 equivalent |
+
+$1,000 across 300 gifts is a $3.33 average, which suits a product built for small personal gifts and sits about 4× above the proposed 0.00001 sBTC minimum.
+
+**Organic means user-funded**, and it is the only thing counted in a headline figure. The pre-funded demo gift (R-6.4) and any sponsor-funded campaign are recorded with their funding source at creation and reported on their own line. No grant funds are used to create gifts.
 
 ### Reporting principles
 
