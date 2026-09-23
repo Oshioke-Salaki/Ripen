@@ -14,12 +14,37 @@ Later, the same escrow rails carry savings locks, trust funds, vesting and payou
 
 | | |
 |---|---|
-| Contract deployed | Not yet |
+| Escrow contract | ✅ **Deployed to Stacks testnet** |
+| Test suite | ✅ 52 tests, all passing |
+| Documentation | ✅ This repo |
 | Web app | Not yet |
-| Tests | Not yet |
-| Docs | ✅ This repo |
+| Relayer | Not yet |
+| Demo video | Not yet |
 
-Nothing is on mainnet. Nothing has been audited. There are no users, partners, or integrations yet. This section is kept honest and updated as things actually ship.
+**Testnet deployment**
+
+| | |
+|---|---|
+| Contract | [`STXWNPMB6D6Y8F4GMSR66RVP4WTWN03B94XRMA31.ripen-gift-v1`](https://explorer.hiro.so/txid/STXWNPMB6D6Y8F4GMSR66RVP4WTWN03B94XRMA31.ripen-gift-v1?chain=testnet) |
+| Deploy transaction | [`e0ed8fcf…ce370e`](https://explorer.hiro.so/txid/e0ed8fcff1e322e34efa289b0056ff6c468c5465cc3f93fbcd0eb73337ce370e?chain=testnet) |
+| sBTC token | `SN3VMHXEN64ZZF71JQ5VESXDWTR301XTTXGF4J8F1.sbtc-token` |
+| Exact deployed source | [`deployments/ripen-gift-v1.testnet.clar`](deployments/ripen-gift-v1.testnet.clar) |
+
+Nothing is on mainnet. Nothing has been audited. There are no users, partners, or
+integrations yet. This section is kept honest and updated as things actually ship.
+
+## Running it
+
+```bash
+npm install
+npm test                  # 52 tests against a simnet devnet
+npm run check:network     # confirm which sBTC token the contract points at
+```
+
+The canonical contract source points at a devnet mock so the tests always run.
+The deploy script substitutes the real sBTC token for the target network in
+memory and writes the exact deployed bytes to `deployments/`, so what is on
+chain can always be diffed against what is in the repo.
 
 ## Why it's interesting
 

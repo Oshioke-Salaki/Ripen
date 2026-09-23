@@ -1,0 +1,16 @@
+[project]
+name = "ripen"
+description = "Non-custodial sBTC gift escrow on Stacks"
+authors = ["Oshioke Yusuf Salaki"]
+telemetry = false
+cache_dir = "./.cache"
+
+[contracts.mock-sbtc-token]
+path = "contracts/mock-sbtc-token.clar"
+clarity_version = 3
+epoch = 3.1
+
+[contracts.ripen-gift-v1]
+path = "contracts/ripen-gift-v1.clar"
+clarity_version = 3
+epoch = 3.1

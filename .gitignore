@@ -33,3 +33,6 @@ npm-debug.log*
 
 # grant correspondence — never publish
 private/
+
+# deployer key
+.env.deploy

@@ -34,6 +34,6 @@ Checked against live sources on 2026-09-23, since a specification built on half-
 
 - sBTC token contract identifiers, mainnet and testnet — queried directly from the Hiro node APIs.
 - Clarity 3 block-height keywords, and the removal of `block-height`.
-- `secp256k1-verify` argument sizes and its rejection of high-S signatures.
+- `secp256k1-verify` argument sizes, and — contrary to the Stacks documentation — its **acceptance** of high-S signatures, established by running it rather than reading about it.
 - SIP-018 structured-data hashing and its `0x534950303138` prefix.
 - The Stacks sponsored-transaction flow, and the current state of wallet support for it.

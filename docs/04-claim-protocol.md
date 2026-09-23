@@ -150,7 +150,11 @@ One practical note in its favour: sponsored-transaction signing is [currently br
 
 ## 6. Implementation notes that will bite
 
-**Low-S signatures.** Clarity's `secp256k1-verify` rejects high-S signatures, enforcing canonical low-S form. `@noble/curves` produces low-S by default; other libraries do not. If you ever swap the crypto library, this is the first thing to re-test — symptom is a signature that verifies perfectly off-chain and fails on-chain, with nothing to tell you why.
+**Signature malleability — and a correction.** The Stacks documentation states that `secp256k1-verify` rejects high-S signatures to enforce canonical low-S form. We tested it against the deployed Clarity version and it does not. A malleated signature `(r, n-s)` verifies exactly as `(r, s)` does, in both 64- and 65-byte form, and the trailing recovery byte is ignored entirely.
+
+This does not hurt Ripen. The recipient is bound inside the signed message, so a malleated signature still only pays the address it was signed for — test L-11 asserts exactly that. It does have one operational consequence: **the relayer's one-relay-per-gift record must be keyed on gift id, never on signature bytes**, because the same authorisation has more than one valid byte representation.
+
+We still sign low-S (`@noble/curves` does so by default). Standard practice, and it costs nothing.
 
 **Signature length.** `secp256k1-verify` accepts a 64-byte `(r, s)` or 65 bytes with a trailing recovery id. We standardise on 65 for consistency with `secp256k1-recover?` and the wider ecosystem. Fix the type in the contract signature; do not accept both.
 
@@ -169,7 +173,7 @@ If the app is gone and the relayer is gone, the escrow still works. With only a 
 1. Take the 64 hex characters after `#k=` — that is the claim private key.
 2. Derive the compressed public key, and call `get-gift-id-by-pubkey` on the contract to find the gift id.
 3. Call the contract's own `claim-message-hash(gift-id, your-address)` read-only function. It returns the exact 32 bytes to sign.
-4. Sign those bytes with the claim key, low-S, 65-byte compact form with recovery id.
+4. Sign those bytes with the claim key. 65-byte compact form with a recovery id is what Ripen emits; a 64-byte signature also verifies.
 5. Call `claim-gift(gift-id, your-address, signature)` from any Stacks account with a little STX.
 
 Step 3 is why `claim-message-hash` is a public read-only function: the contract is the authority on what to sign, so no one ever has to trust this document to get their money out.

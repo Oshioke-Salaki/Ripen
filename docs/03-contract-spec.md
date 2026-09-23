@@ -276,7 +276,7 @@ Four bindings, each blocking a specific attack:
 
 The `SIP018-PREFIX` guarantees the signed bytes can never be a valid Stacks transaction, so a claim signature can never be repurposed as an authorisation to move the signer's own funds.
 
-Client-side construction, low-S canonicalisation, and the full end-to-end flow: [04 — Claim protocol](04-claim-protocol.md).
+Client-side construction, signature malleability, and the full end-to-end flow: [04 — Claim protocol](04-claim-protocol.md).
 
 ## 9. Test matrix
 
@@ -316,7 +316,7 @@ Clarinet SDK + Vitest. Every row is a named test. A row without a test is an uns
 | L-8 | **Valid signature, different `recipient` argument** | `ERR-BAD-SIGNATURE` — the front-running test |
 | L-9 | Signature valid for gift 1, submitted for gift 2 | `ERR-BAD-SIGNATURE` |
 | L-10 | Malformed / truncated signature | `ERR-BAD-SIGNATURE`, no abort |
-| L-11 | High-S (non-canonical) signature | `ERR-BAD-SIGNATURE` |
+| L-11 | High-S (malleated) signature | **Accepted** — `secp256k1-verify` does not enforce low-S. The same test asserts a malleated signature still cannot be redirected to another recipient |
 | L-12 | **Claim submitted by a third party** (relayer) | Succeeds; funds reach `recipient`, not the submitter |
 | L-13 | Claim on a nonexistent gift | `ERR-NOT-FOUND` |
 | L-14 | Claim a reclaimed gift | `ERR-NOT-PENDING` |

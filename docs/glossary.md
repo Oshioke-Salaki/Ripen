@@ -35,7 +35,7 @@ Stacks, Clarity and sBTC terms as Ripen uses them. Written for someone arriving 
 
 **Nakamoto** — The Stacks upgrade that brought fast blocks and Bitcoin finality. The reason `block-height` split into three separate keywords.
 
-**`secp256k1-verify`** — Clarity's signature check: `(secp256k1-verify message-hash signature public-key)`, taking a 32-byte hash, a 64- or 65-byte signature, and a 33-byte compressed public key. **It rejects high-S signatures**, requiring canonical low-S form. `@noble/curves` produces low-S by default; if a signature verifies off-chain and fails on-chain, this is the first thing to check.
+**`secp256k1-verify`** — Clarity's signature check: `(secp256k1-verify message-hash signature public-key)`, taking a 32-byte hash, a 64- or 65-byte signature, and a 33-byte compressed public key. **It does not enforce canonical low-S form**, despite documentation to the contrary: we tested it, and `(r, n-s)` verifies exactly as `(r, s)` does, in both 64- and 65-byte form, with the recovery byte ignored. Claim signatures are therefore malleable. This is harmless for Ripen because the recipient is bound inside the signed message, so a malleated signature still only pays the address it was signed for — but any idempotency must be keyed on gift id, never on signature bytes. Verified by test L-11.
 
 **`principal-of?`** — Derives the Stacks principal from a 33-byte public key, returning `(err u1)` for a malformed key. Ripen uses it as a validity guard when a gift's claim key is registered.
 

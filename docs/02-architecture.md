@@ -118,7 +118,7 @@ Result: the message is private from Ripen, private from the chain, and tamper-ev
 | Framework | Next.js (App Router) + TypeScript | Server-rendered social cards on the same codebase as the client-only secret handling |
 | Wallets | `@stacks/connect` v8 (`connect()` / `request()`) | Supports Leather and Xverse through one API |
 | Chain | `@stacks/transactions` | Building calls, post-conditions via the `Pc` builder, consensus serialisation |
-| Crypto | `@noble/curves` (secp256k1) + WebCrypto | Key generation, SIP-018 signing, AES-GCM. `@noble/curves` emits low-S signatures by default, which Clarity requires — see [claim protocol §6](04-claim-protocol.md#6-implementation-notes-that-will-bite) |
+| Crypto | `@noble/curves` (secp256k1) + WebCrypto | Key generation, SIP-018 signing, AES-GCM. `@noble/curves` emits low-S signatures by default. Clarity does not require this — see [claim protocol §6](04-claim-protocol.md#6-implementation-notes-that-will-bite) |
 | Styling | Tailwind + a small token set | Ripeness visual needs tight control over motion and colour |
 | State | URL + chain reads; minimal client store | Gift state is on-chain; do not build a second source of truth |
 | PWA | `next-pwa` or equivalent, cache-first on the claim shell | N-4: the countdown works offline |

@@ -1,0 +1,21 @@
+{
+  "name": "ripen",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Non-custodial sBTC gift escrow on Stacks",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check:network": "node scripts/check-network-constant.mjs"
+  },
+  "devDependencies": {
+    "@stacks/clarinet-sdk": "^3.24.0",
+    "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "@noble/curves": "^1.4.0",
+    "@noble/hashes": "^1.4.0",
+    "@stacks/transactions": "^7.6.0"
+  }
+}
