@@ -7,7 +7,9 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "check:network": "node scripts/check-network-constant.mjs"
+    "check:network": "node scripts/check-network-constant.mjs",
+    "verify:testnet": "node --experimental-strip-types --no-warnings scripts/verify-testnet.ts",
+    "check:contracts": "node scripts/check-contracts.mjs"
   },
   "devDependencies": {
     "@stacks/clarinet-sdk": "^3.24.0",
@@ -17,5 +19,6 @@
     "@noble/curves": "^1.4.0",
     "@noble/hashes": "^1.4.0",
     "@stacks/transactions": "^7.6.0"
-  }
+  },
+  "license": "MIT"
 }

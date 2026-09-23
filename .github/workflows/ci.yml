@@ -1,0 +1,31 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: contract test suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Contracts compile and pass analysis
+        run: node scripts/check-contracts.mjs
+
+      - name: The committed source targets devnet, so the suite runs against the mock
+        run: node scripts/check-network-constant.mjs
+
+      - name: Test suite
+        run: npm test

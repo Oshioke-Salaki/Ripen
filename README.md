@@ -1,5 +1,7 @@
 # Ripen
 
+[![tests](https://github.com/Oshioke-Salaki/Ripen/actions/workflows/ci.yml/badge.svg)](https://github.com/Oshioke-Salaki/Ripen/actions/workflows/ci.yml)
+
 **Lock sBTC. Let it grow while it waits. Release it on a date, or to a link.**
 
 Ripen is a non-custodial escrow on [Stacks](https://stacks.co) for sBTC that treats *time* as a feature instead of friction. The first product is gifting: you send sBTC as a shareable link that can be time-locked — "opens in 10 days", "opens on your birthday" — and the recipient opens it with nothing but a Stacks address. No wallet balance, no gas, no seed phrase to claim.
@@ -38,8 +40,16 @@ integrations yet. This section is kept honest and updated as things actually shi
 ```bash
 npm install
 npm test                  # 52 tests against a simnet devnet
+npm run check:contracts   # compile and analyse every contract
 npm run check:network     # confirm which sBTC token the contract points at
+npm run verify:testnet    # verify the LIVE testnet deployment — no wallet, no funds
 ```
+
+`verify:testnet` needs nothing but network access. It confirms the contract is
+deployed, that it is bound to the real testnet sBTC token and not a mock, that
+claiming cannot be paused, and — the check that matters most — that
+`lib/claim-message.ts` and the deployed contract produce identical SIP-018 claim
+hashes. If those ever disagreed, every gift would become unclaimable.
 
 The canonical contract source points at a devnet mock so the tests always run.
 The deploy script substitutes the real sBTC token for the target network in
@@ -80,4 +90,4 @@ Built for the Stacks Endowment Q3 2026 grant programme, Getting Started track, c
 
 ## Licence
 
-To be decided before first code commit — MIT or Apache-2.0.
+[MIT](LICENSE).

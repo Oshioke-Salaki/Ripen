@@ -245,8 +245,12 @@ These hold at every block height, in every state. Each has at least one test (§
 (define-constant ERR-INVALID-PUBKEY    (err u110))
 (define-constant ERR-PUBKEY-IN-USE     (err u111))
 (define-constant ERR-CAP-EXCEEDED      (err u112))
-(define-constant ERR-TRANSFER-FAILED   (err u113))
+(define-constant ERR-INVALID-RECIPIENT (err u114))
 ```
+
+`u113` is deliberately unused. An earlier draft reserved it for `ERR-TRANSFER-FAILED`, but a failed sBTC transfer propagates the token contract's own error through `try!` rather than being re-wrapped, so no dedicated code is needed. The number is left retired rather than recycled, because the deployed contract cannot be renumbered and a reused code would mean two different failures sharing one number across versions.
+
+`u114` (`ERR-INVALID-RECIPIENT`) rejects the escrow's own principal as a claim destination. Paying the contract itself would leave sBTC inside it with no gift accounting for it, breaking invariant I-1.
 
 Codes are stable across versions and are mapped one-to-one to user-facing copy in [05 — UX flows](05-ux-flows.md#7-error-copy). A raw `u107` must never reach a user; the claim page says "This link doesn't match this gift."
 

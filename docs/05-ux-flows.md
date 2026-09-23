@@ -309,6 +309,7 @@ A raw contract error code must never reach a user.
 | `u107` | `ERR-BAD-SIGNATURE` | "This link doesn't match this gift. Check you copied the whole link, including everything after the #." |
 | `u108` | `ERR-INVALID-AMOUNT` | The specific bound: "Gifts start at 0.00001 sBTC" / "Gifts are capped at 0.01 sBTC while we're on testnet." |
 | `u112` | `ERR-CAP-EXCEEDED` | "Ripen is holding as much sBTC as it's set up to hold right now. Try a smaller amount, or come back shortly." |
+| `u114` | `ERR-INVALID-RECIPIENT` | "That address can't receive this gift. Send it to a personal wallet you control." |
 
 The `u100` copy deliberately mentions that claims still work, because a user who sees "paused" will assume their money is frozen. It isn't — pausing cannot block a claim ([invariant I-5](03-contract-spec.md#6-invariants)) — and that is a promise worth spending a sentence on.
 
