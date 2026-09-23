@@ -1,0 +1,32 @@
+# dependencies
+node_modules/
+.pnp*
+.yarn/
+
+# builds
+.next/
+out/
+dist/
+build/
+
+# clarinet
+.cache/
+history.txt
+settings/Mainnet.toml
+settings/Testnet.toml
+
+# env & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# os / editor
+.DS_Store
+.vscode/
+.idea/
+
+# logs
+*.log
+npm-debug.log*
